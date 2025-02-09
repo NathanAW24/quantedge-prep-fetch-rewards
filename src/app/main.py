@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers.transaction_router import router as transactions_router
+from .routers.transaction import router as transactions_router
 from .dependencies import run_migration
 
 run_migration()
