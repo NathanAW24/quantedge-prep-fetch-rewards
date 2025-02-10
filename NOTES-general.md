@@ -1,3 +1,7 @@
+
+# HOW TO RUN?
+
+
 # Why Do We Need __init__.py in Each Directory?
 ✅ __init__.py makes directories importable Python packages.
 ✅ Prevents ModuleNotFoundError.
@@ -395,3 +399,4 @@ This structure cleanly separates concerns into different layers, and by using pa
 # Models vs Schemas (DTO)
 Model &rarr; Database Table Structure
 Schemas (DTO) &rarr; Request/Response Structure
+
