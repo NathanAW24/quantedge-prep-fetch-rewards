@@ -9,3 +9,4 @@ class Transaction(BaseModel):
 
     timestamp: datetime
     points: int
+    expired: bool

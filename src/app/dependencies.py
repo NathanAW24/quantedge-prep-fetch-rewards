@@ -3,6 +3,8 @@ import os
 import random
 from datetime import datetime
 
+import pytz
+
 def run_migration():
     output_dir = os.path.join(os.path.dirname(__file__), '../data/')
     os.makedirs(output_dir, exist_ok=True)
@@ -91,13 +93,17 @@ def run_seed():
         user_ids = users_df['id'].tolist()
         payer_ids = payers_df['id'].tolist()
 
+        random.seed(42)  
+
         for i in range(1, 10):
             transaction = {
                 'id': f'{i}',
-                'payer_id': random.choice(payer_ids),
-                'user_id': random.choice(user_ids),
+                # 'payer_id': random.choice(payer_ids),
+                # 'user_id': random.choice(user_ids),
+                'payer_id': "1",
+                'user_id': "1",
                 'points': random.randint(1, 10),  # Allow both positive and negative transactions
-                'timestamp': datetime.now().isoformat(),
+                'timestamp': datetime.utcnow().replace(tzinfo=pytz.UTC),
                 'expired': False
             }
             transactions.append(transaction)

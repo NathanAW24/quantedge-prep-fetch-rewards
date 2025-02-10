@@ -1,7 +1,9 @@
 from fastapi import FastAPI
-from .routers.transaction import router as transactions_router
-from .dependencies import run_init
+from app.routers.transaction import router as transactions_router
+from app.routers.user import router as users_router
+from app.dependencies import run_init
 
 run_init()
 app = FastAPI(title="Fetch Rewards Exercise")
 app.include_router(transactions_router, prefix="/transactions")
+app.include_router(users_router, prefix = "/users")
