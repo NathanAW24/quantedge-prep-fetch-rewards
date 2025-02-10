@@ -18,14 +18,19 @@ def read_transactions_from_csv():
 def write_transactions_to_csv(df: pd.DataFrame):
     df.to_csv(DATA_FILE, index=False)
 
-
-def create_user(transaction_data: dict) -> Transaction:
+def create_user(transaction_data: dict) -> Optional[Transaction]:
     df = read_transactions_from_csv()
     new_id = 1 if df.empty else int(df["id"].max()) + 1
-    
     transaction_data["id"] = str(new_id)
+
+    try:
+        transaction = Transaction(**transaction_data)
+    except Exception as e:
+        print(f"Failed to create transaction: {e}")
+        return None
 
     new_row = pd.DataFrame([transaction_data])
     df = pd.concat([df, new_row], ignore_index=True)
+
     write_transactions_to_csv(df)
-    return Transaction(**transaction_data)
+    return transaction
