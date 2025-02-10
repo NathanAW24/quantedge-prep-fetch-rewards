@@ -2,12 +2,19 @@
 - NOTES-general.md
 - NOTES-pydantic.md
 - NOTES-train-of-thought.md
-- Problem Description.pdf
 - README.md
+- problem-desc.pdf
 - project_structure.text
 - requirements.txt
 - src
-  - __init__.py
+  - .pytest_cache
+    - .gitignore
+    - CACHEDIR.TAG
+    - README.md
+    - v
+      - cache
+        - nodeids
+        - stepwise
   - app
     - __init__.py
     - __pycache__
@@ -16,24 +23,57 @@
       - main.cpython-311.pyc
     - crud
       - __init__.py
+      - __pycache__
+        - __init__.cpython-311.pyc
+        - payer.cpython-311.pyc
+        - transaction.cpython-311.pyc
+        - user.cpython-311.pyc
+      - payer.py
       - transaction.py
+      - user.py
     - dependencies.py
     - main.py
     - models
       - __init__.py
+      - __pycache__
+        - __init__.cpython-311.pyc
+        - payer.cpython-311.pyc
+        - transaction.cpython-311.pyc
+        - user.cpython-311.pyc
+      - payer.py
       - transaction.py
+      - user.py
     - routers
       - __init__.py
       - __pycache__
         - __init__.cpython-311.pyc
+        - payer.cpython-311.pyc
         - transaction.cpython-311.pyc
         - transaction_router.cpython-311.pyc
+        - user.cpython-311.pyc
+      - payer.py
       - transaction.py
+      - user.py
     - schemas
       - __init__.py
+      - __pycache__
+        - __init__.cpython-311.pyc
+        - points_balance.cpython-311.pyc
+        - spend_points.cpython-311.pyc
+        - transaction.cpython-311.pyc
+      - points_balance.py
+      - spend_points.py
       - transaction.py
     - services
       - __init__.py
+      - __pycache__
+        - __init__.cpython-311.pyc
+        - add_transaction.cpython-311.pyc
+        - points_balance.cpython-311.pyc
+        - spend_points.cpython-311.pyc
+      - add_transaction.py
+      - points_balance.py
+      - spend_points.py
     - utils
       - __init__.py
   - data
@@ -42,9 +82,24 @@
     - users.csv
   - tests
     - __init__.py
+    - __pycache__
+      - __init__.cpython-311.pyc
     - crud
       - __init__.py
+      - __pycache__
+        - __init__.cpython-311.pyc
+        - payer.cpython-311.pyc
+        - transaction.cpython-311.pyc
+        - user.cpython-311.pyc
+      - payer.py
       - transaction.py
+      - user.py
+    - services
+      - __init__.py
+      - __pycache__
+        - __init__.cpython-311.pyc
+        - add_transaction.cpython-311.pyc
+      - add_transaction.py
 - venv
   - bin
     - Activate.ps1
@@ -57,6 +112,8 @@
     - pip
     - pip3
     - pip3.11
+    - py.test
+    - pytest
     - python
     - python3
     - python3.11
@@ -67,6 +124,7 @@
     - python3.11
       - site-packages
         - __pycache__
+          - py.cpython-311.pyc
           - six.cpython-311.pyc
           - typing_extensions.cpython-311.pyc
         - _distutils_hack
@@ -75,6 +133,157 @@
             - __init__.cpython-311.pyc
             - override.cpython-311.pyc
           - override.py
+        - _pytest
+          - __init__.py
+          - __pycache__
+            - __init__.cpython-311.pyc
+            - _argcomplete.cpython-311.pyc
+            - _version.cpython-311.pyc
+            - cacheprovider.cpython-311.pyc
+            - capture.cpython-311.pyc
+            - compat.cpython-311.pyc
+            - debugging.cpython-311.pyc
+            - deprecated.cpython-311.pyc
+            - doctest.cpython-311.pyc
+            - faulthandler.cpython-311.pyc
+            - fixtures.cpython-311.pyc
+            - freeze_support.cpython-311.pyc
+            - helpconfig.cpython-311.pyc
+            - hookspec.cpython-311.pyc
+            - junitxml.cpython-311.pyc
+            - legacypath.cpython-311.pyc
+            - logging.cpython-311.pyc
+            - main.cpython-311.pyc
+            - monkeypatch.cpython-311.pyc
+            - nodes.cpython-311.pyc
+            - outcomes.cpython-311.pyc
+            - pastebin.cpython-311.pyc
+            - pathlib.cpython-311.pyc
+            - pytester.cpython-311.pyc
+            - pytester_assertions.cpython-311.pyc
+            - python.cpython-311.pyc
+            - python_api.cpython-311.pyc
+            - python_path.cpython-311.pyc
+            - recwarn.cpython-311.pyc
+            - reports.cpython-311.pyc
+            - runner.cpython-311.pyc
+            - scope.cpython-311.pyc
+            - setuponly.cpython-311.pyc
+            - setupplan.cpython-311.pyc
+            - skipping.cpython-311.pyc
+            - stash.cpython-311.pyc
+            - stepwise.cpython-311.pyc
+            - terminal.cpython-311.pyc
+            - threadexception.cpython-311.pyc
+            - timing.cpython-311.pyc
+            - tmpdir.cpython-311.pyc
+            - unittest.cpython-311.pyc
+            - unraisableexception.cpython-311.pyc
+            - warning_types.cpython-311.pyc
+            - warnings.cpython-311.pyc
+          - _argcomplete.py
+          - _code
+            - __init__.py
+            - __pycache__
+              - __init__.cpython-311.pyc
+              - code.cpython-311.pyc
+              - source.cpython-311.pyc
+            - code.py
+            - source.py
+          - _io
+            - __init__.py
+            - __pycache__
+              - __init__.cpython-311.pyc
+              - pprint.cpython-311.pyc
+              - saferepr.cpython-311.pyc
+              - terminalwriter.cpython-311.pyc
+              - wcwidth.cpython-311.pyc
+            - pprint.py
+            - saferepr.py
+            - terminalwriter.py
+            - wcwidth.py
+          - _py
+            - __init__.py
+            - __pycache__
+              - __init__.cpython-311.pyc
+              - error.cpython-311.pyc
+              - path.cpython-311.pyc
+            - error.py
+            - path.py
+          - _version.py
+          - assertion
+            - __init__.py
+            - __pycache__
+              - __init__.cpython-311.pyc
+              - rewrite.cpython-311.pyc
+              - truncate.cpython-311.pyc
+              - util.cpython-311.pyc
+            - rewrite.py
+            - truncate.py
+            - util.py
+          - cacheprovider.py
+          - capture.py
+          - compat.py
+          - config
+            - __init__.py
+            - __pycache__
+              - __init__.cpython-311.pyc
+              - argparsing.cpython-311.pyc
+              - compat.cpython-311.pyc
+              - exceptions.cpython-311.pyc
+              - findpaths.cpython-311.pyc
+            - argparsing.py
+            - compat.py
+            - exceptions.py
+            - findpaths.py
+          - debugging.py
+          - deprecated.py
+          - doctest.py
+          - faulthandler.py
+          - fixtures.py
+          - freeze_support.py
+          - helpconfig.py
+          - hookspec.py
+          - junitxml.py
+          - legacypath.py
+          - logging.py
+          - main.py
+          - mark
+            - __init__.py
+            - __pycache__
+              - __init__.cpython-311.pyc
+              - expression.cpython-311.pyc
+              - structures.cpython-311.pyc
+            - expression.py
+            - structures.py
+          - monkeypatch.py
+          - nodes.py
+          - outcomes.py
+          - pastebin.py
+          - pathlib.py
+          - py.typed
+          - pytester.py
+          - pytester_assertions.py
+          - python.py
+          - python_api.py
+          - python_path.py
+          - recwarn.py
+          - reports.py
+          - runner.py
+          - scope.py
+          - setuponly.py
+          - setupplan.py
+          - skipping.py
+          - stash.py
+          - stepwise.py
+          - terminal.py
+          - threadexception.py
+          - timing.py
+          - tmpdir.py
+          - unittest.py
+          - unraisableexception.py
+          - warning_types.py
+          - warnings.py
         - annotated_types
           - __init__.py
           - __pycache__
@@ -92,12 +301,17 @@
         - anyio
           - __init__.py
           - __pycache__
+            - __init__.cpython-311-pytest-8.3.4.pyc
             - __init__.cpython-311.pyc
+            - from_thread.cpython-311-pytest-8.3.4.pyc
             - from_thread.cpython-311.pyc
+            - lowlevel.cpython-311-pytest-8.3.4.pyc
             - lowlevel.cpython-311.pyc
+            - pytest_plugin.cpython-311-pytest-8.3.4.pyc
             - pytest_plugin.cpython-311.pyc
             - to_interpreter.cpython-311.pyc
             - to_process.cpython-311.pyc
+            - to_thread.cpython-311-pytest-8.3.4.pyc
             - to_thread.cpython-311.pyc
           - _backends
             - __init__.py
@@ -110,19 +324,32 @@
           - _core
             - __init__.py
             - __pycache__
+              - __init__.cpython-311-pytest-8.3.4.pyc
               - __init__.cpython-311.pyc
               - _asyncio_selector_thread.cpython-311.pyc
+              - _eventloop.cpython-311-pytest-8.3.4.pyc
               - _eventloop.cpython-311.pyc
+              - _exceptions.cpython-311-pytest-8.3.4.pyc
               - _exceptions.cpython-311.pyc
+              - _fileio.cpython-311-pytest-8.3.4.pyc
               - _fileio.cpython-311.pyc
+              - _resources.cpython-311-pytest-8.3.4.pyc
               - _resources.cpython-311.pyc
+              - _signals.cpython-311-pytest-8.3.4.pyc
               - _signals.cpython-311.pyc
+              - _sockets.cpython-311-pytest-8.3.4.pyc
               - _sockets.cpython-311.pyc
+              - _streams.cpython-311-pytest-8.3.4.pyc
               - _streams.cpython-311.pyc
+              - _subprocesses.cpython-311-pytest-8.3.4.pyc
               - _subprocesses.cpython-311.pyc
+              - _synchronization.cpython-311-pytest-8.3.4.pyc
               - _synchronization.cpython-311.pyc
+              - _tasks.cpython-311-pytest-8.3.4.pyc
               - _tasks.cpython-311.pyc
+              - _testing.cpython-311-pytest-8.3.4.pyc
               - _testing.cpython-311.pyc
+              - _typedattr.cpython-311-pytest-8.3.4.pyc
               - _typedattr.cpython-311.pyc
             - _asyncio_selector_thread.py
             - _eventloop.py
@@ -140,13 +367,21 @@
           - abc
             - __init__.py
             - __pycache__
+              - __init__.cpython-311-pytest-8.3.4.pyc
               - __init__.cpython-311.pyc
+              - _eventloop.cpython-311-pytest-8.3.4.pyc
               - _eventloop.cpython-311.pyc
+              - _resources.cpython-311-pytest-8.3.4.pyc
               - _resources.cpython-311.pyc
+              - _sockets.cpython-311-pytest-8.3.4.pyc
               - _sockets.cpython-311.pyc
+              - _streams.cpython-311-pytest-8.3.4.pyc
               - _streams.cpython-311.pyc
+              - _subprocesses.cpython-311-pytest-8.3.4.pyc
               - _subprocesses.cpython-311.pyc
+              - _tasks.cpython-311-pytest-8.3.4.pyc
               - _tasks.cpython-311.pyc
+              - _testing.cpython-311-pytest-8.3.4.pyc
               - _testing.cpython-311.pyc
             - _eventloop.py
             - _resources.py
@@ -162,12 +397,16 @@
           - streams
             - __init__.py
             - __pycache__
+              - __init__.cpython-311-pytest-8.3.4.pyc
               - __init__.cpython-311.pyc
               - buffered.cpython-311.pyc
               - file.cpython-311.pyc
+              - memory.cpython-311-pytest-8.3.4.pyc
               - memory.cpython-311.pyc
+              - stapled.cpython-311-pytest-8.3.4.pyc
               - stapled.cpython-311.pyc
               - text.cpython-311.pyc
+              - tls.cpython-311-pytest-8.3.4.pyc
               - tls.cpython-311.pyc
             - buffered.py
             - file.py
@@ -464,6 +703,24 @@
           - METADATA
           - RECORD
           - WHEEL
+        - iniconfig
+          - __init__.py
+          - __pycache__
+            - __init__.cpython-311.pyc
+            - _parse.cpython-311.pyc
+            - _version.cpython-311.pyc
+            - exceptions.cpython-311.pyc
+          - _parse.py
+          - _version.py
+          - exceptions.py
+          - py.typed
+        - iniconfig-2.0.0.dist-info
+          - INSTALLER
+          - METADATA
+          - RECORD
+          - WHEEL
+          - licenses
+            - LICENSE
         - numpy
           - __config__.py
           - __config__.pyi
@@ -2053,6 +2310,51 @@
           - RECORD
           - WHEEL
           - entry_points.txt
+        - packaging
+          - __init__.py
+          - __pycache__
+            - __init__.cpython-311.pyc
+            - _elffile.cpython-311.pyc
+            - _manylinux.cpython-311.pyc
+            - _musllinux.cpython-311.pyc
+            - _parser.cpython-311.pyc
+            - _structures.cpython-311.pyc
+            - _tokenizer.cpython-311.pyc
+            - markers.cpython-311.pyc
+            - metadata.cpython-311.pyc
+            - requirements.cpython-311.pyc
+            - specifiers.cpython-311.pyc
+            - tags.cpython-311.pyc
+            - utils.cpython-311.pyc
+            - version.cpython-311.pyc
+          - _elffile.py
+          - _manylinux.py
+          - _musllinux.py
+          - _parser.py
+          - _structures.py
+          - _tokenizer.py
+          - licenses
+            - __init__.py
+            - __pycache__
+              - __init__.cpython-311.pyc
+              - _spdx.cpython-311.pyc
+            - _spdx.py
+          - markers.py
+          - metadata.py
+          - py.typed
+          - requirements.py
+          - specifiers.py
+          - tags.py
+          - utils.py
+          - version.py
+        - packaging-24.2.dist-info
+          - INSTALLER
+          - LICENSE
+          - LICENSE.APACHE
+          - LICENSE.BSD
+          - METADATA
+          - RECORD
+          - WHEEL
         - pandas
           - __init__.py
           - __pycache__
@@ -6502,6 +6804,33 @@
             - __init__.py
             - __pycache__
               - __init__.cpython-311.pyc
+        - pluggy
+          - __init__.py
+          - __pycache__
+            - __init__.cpython-311.pyc
+            - _callers.cpython-311.pyc
+            - _hooks.cpython-311.pyc
+            - _manager.cpython-311.pyc
+            - _result.cpython-311.pyc
+            - _tracing.cpython-311.pyc
+            - _version.cpython-311.pyc
+            - _warnings.cpython-311.pyc
+          - _callers.py
+          - _hooks.py
+          - _manager.py
+          - _result.py
+          - _tracing.py
+          - _version.py
+          - _warnings.py
+          - py.typed
+        - pluggy-1.5.0.dist-info
+          - INSTALLER
+          - LICENSE
+          - METADATA
+          - RECORD
+          - WHEEL
+          - top_level.txt
+        - py.py
         - pydantic
           - __init__.py
           - __pycache__
@@ -6745,6 +7074,23 @@
           - WHEEL
           - licenses
             - LICENSE
+        - pytest
+          - __init__.py
+          - __main__.py
+          - __pycache__
+            - __init__.cpython-311.pyc
+            - __main__.cpython-311.pyc
+          - py.typed
+        - pytest-8.3.4.dist-info
+          - AUTHORS
+          - INSTALLER
+          - LICENSE
+          - METADATA
+          - RECORD
+          - REQUESTED
+          - WHEEL
+          - entry_points.txt
+          - top_level.txt
         - python_dateutil-2.9.0.post0.dist-info
           - INSTALLER
           - LICENSE
