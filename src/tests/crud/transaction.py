@@ -1,7 +1,7 @@
 from datetime import datetime
 
 # imports should be relative to the directory you are running the file from
-from app.crud.transaction import create_user 
+from app.crud.transaction import create_transaction 
 
 transaction_data = {
     'payer_id': '123',
@@ -10,4 +10,4 @@ transaction_data = {
     'points': 2000
 }
 
-create_user(transaction_data)
+create_transaction(transaction_data)

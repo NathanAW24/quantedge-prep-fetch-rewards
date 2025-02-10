@@ -1,4 +1,5 @@
 import os
+from typing import Optional
 
 import pandas as pd
 
@@ -18,15 +19,31 @@ def write_payers_to_csv(df: pd.DataFrame):
     df.to_csv(DATA_FILE, index=False)
 
 def get_payer_by_id(payer_id: str):
-    print(DATA_FILE)
+    # print(DATA_FILE)
     df = read_payers_from_csv()
-    print(df)
+    # print(df)
 
     df['id'] = df['id'].astype(str)
     payer_row = df[df['id'] == payer_id]
-    print(payer_row)
+    # print(payer_row)
 
     if not payer_row.empty:
         row = payer_row.iloc[0]
         return Payer(id=row['id'], name=row['name'], points=row['points'])
+    return None
+
+def update_payer(payer_id: int, update_data: dict) -> Optional[Payer]:
+    df = read_payers_from_csv()
+
+    df['id'] = df['id'].astype(str)
+    indices = df.index[df["id"] == payer_id]
+    
+    if not indices.empty:
+        idx = indices[0]
+        for key, value in update_data.items():
+            if value is not None:
+                df.at[idx, key] = value
+        write_payers_to_csv(df)
+        row = df.iloc[idx]
+        return Payer(id=row["id"], name=row["name"], points=row["points"])
     return None
