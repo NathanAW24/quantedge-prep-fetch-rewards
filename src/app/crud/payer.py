@@ -1,5 +1,5 @@
 import os
-from typing import Optional
+from typing import List, Optional
 
 import pandas as pd
 
@@ -47,3 +47,20 @@ def update_payer(payer_id: int, update_data: dict) -> Optional[Payer]:
         row = df.iloc[idx]
         return Payer(id=row["id"], name=row["name"], points=row["points"])
     return None
+
+def get_all_payers() -> List[Payer]:
+    """
+    Reads all payers from the CSV file and returns them as a list of Payer objects.
+    """
+    df = read_payers_from_csv()
+
+    # Ensure 'id' column is treated as a string
+    df["id"] = df["id"].astype(str)
+
+    # Convert DataFrame rows to a list of Payer objects
+    payers = [
+        Payer(id=row["id"], name=row["name"], points=row["points"])
+        for _, row in df.iterrows()
+    ]
+
+    return payers
