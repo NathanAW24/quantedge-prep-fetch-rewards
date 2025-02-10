@@ -19,11 +19,42 @@ def run_migration():
 
     transactions_path = os.path.join(output_dir, 'transactions.csv')
     if not os.path.exists(transactions_path):
-        df = pd.DataFrame(columns=['id', 'payer_id', 'user_id', 'points', 'timestamp'])
+        df = pd.DataFrame(columns=['id', 'payer_id', 'user_id', 'points', 'timestamp', 'expired'])
         df.to_csv(transactions_path, index=False)
 
 
+def synchronize_balances(users_path, payers_path, transactions_path):
+    """
+    Synchronizes balances by applying transaction points to users and payers.
+    """
+    users_df = pd.read_csv(users_path)
+    payers_df = pd.read_csv(payers_path)
+    transactions_df = pd.read_csv(transactions_path)
+
+    # Ensure correct data types
+    users_df["id"] = users_df["id"].astype(str)
+    payers_df["id"] = payers_df["id"].astype(str)
+    transactions_df["user_id"] = transactions_df["user_id"].astype(str)
+    transactions_df["payer_id"] = transactions_df["payer_id"].astype(str)
+
+    # Iterate through transactions and update user & payer balances
+    for _, transaction in transactions_df.iterrows():
+        user_id = transaction["user_id"]
+        payer_id = transaction["payer_id"]
+        points = transaction["points"]
+
+        # Update user and payer balances based on points
+        users_df.loc[users_df["id"] == user_id, "points"] += points
+        payers_df.loc[payers_df["id"] == payer_id, "points"] -= points
+
+    # Save the updated data back to CSV
+    users_df.to_csv(users_path, index=False)
+    payers_df.to_csv(payers_path, index=False)
+
 def run_seed():
+    """
+    Seeds the users, payers, and transactions, then synchronizes balances.
+    """
     output_dir = os.path.join(os.path.dirname(__file__), '../data/')
     
     users_path = os.path.join(output_dir, 'users.csv')
@@ -32,43 +63,52 @@ def run_seed():
 
     users_df = pd.read_csv(users_path) if os.path.exists(users_path) else pd.DataFrame(columns=['id', 'name', 'points'])
     payers_df = pd.read_csv(payers_path) if os.path.exists(payers_path) else pd.DataFrame(columns=['id', 'name', 'points'])
-    transactions_df = pd.read_csv(transactions_path) if os.path.exists(transactions_path) else pd.DataFrame(columns=['id', 'payer_id', 'user_id', 'points', 'timestamp'])
+    transactions_df = pd.read_csv(transactions_path) if os.path.exists(transactions_path) else pd.DataFrame(columns=['id', 'payer_id', 'user_id', 'points', 'timestamp', 'expired'])
 
+    # Seed users if empty
     if users_df.empty:
         users = [
-            {'id': '1', 'name': 'Alice', 'points': 100},
-            {'id': '2', 'name': 'Bob', 'points': 200},
-            {'id': '3', 'name': 'Charlie', 'points': 300}
+            {'id': '1', 'name': 'Alice', 'points': 0},
+            {'id': '2', 'name': 'Bob', 'points': 0},
+            {'id': '3', 'name': 'Charlie', 'points': 0}
         ]
         users_df = pd.DataFrame(users)
         users_df.to_csv(users_path, index=False)
 
+    # Seed payers if empty
     if payers_df.empty:
         payers = [
-            {'id': '1', 'name': 'Amazon', 'points': 500},
-            {'id': '2', 'name': 'Google', 'points': 600},
-            {'id': '3', 'name': 'Facebook', 'points': 700}
+            {'id': '1', 'name': 'Amazon', 'points': 1000},
+            {'id': '2', 'name': 'Google', 'points': 1000},
+            {'id': '3', 'name': 'Facebook', 'points': 1000}
         ]
         payers_df = pd.DataFrame(payers)
         payers_df.to_csv(payers_path, index=False)
 
+    # Seed transactions if empty
     if transactions_df.empty:
         transactions = []
         user_ids = users_df['id'].tolist()
         payer_ids = payers_df['id'].tolist()
 
-        for i in range(1, 6):
+        for i in range(1, 10):
             transaction = {
                 'id': f'{i}',
                 'payer_id': random.choice(payer_ids),
                 'user_id': random.choice(user_ids),
-                'points': random.randint(10, 200),
-                'timestamp': datetime.now().isoformat()
+                'points': random.randint(1, 10),  # Allow both positive and negative transactions
+                'timestamp': datetime.now().isoformat(),
+                'expired': False
             }
             transactions.append(transaction)
 
         transactions_df = pd.DataFrame(transactions)
         transactions_df.to_csv(transactions_path, index=False)
+
+    # After seeding, synchronize balances
+    synchronize_balances(users_path, payers_path, transactions_path)
+
+
 
 def run_drop():
     """ Deletes all files inside the data/ directory but keeps the directory itself. """
