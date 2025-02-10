@@ -49,7 +49,10 @@ class AddTransaction:
 
                 create_transaction(
                     transaction_data = {
-                        "user_id": user
+                        "user_id": user.id,
+                        "payer_id": payer.id,
+                        "points": request.points,
+                        "timestamp": request.timestamp
                     }
                 )
 
@@ -73,6 +76,16 @@ class AddTransaction:
 
                 update_user(user_id=user.id, update_data = { "points" : user.points })
                 update_payer(payer_id=payer.id, update_data = { "points" : payer.points })
+
+                create_transaction(
+                    transaction_data = {
+                        "user_id": user.id,
+                        "payer_id": payer.id,
+                        "points": request.points,
+                        "timestamp": request.timestamp
+                    }
+                )
+
 
                 # print(user)
                 # print(payer)
